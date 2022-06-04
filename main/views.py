@@ -72,7 +72,22 @@ def profile(request, username=None):
 	Method that fetches a users profile page
 	'''
   current_user =request.user
-  user_post=Post.objects.filter(user=current_user)
+  us_images=Post.objects.filter(user=current_user)
 
-  return render(request,"profile.html",locals(),{"user_post":user_post})
+  return render(request,"profile.html",locals(),{"us_images":us_images})
+
+def profile_edit(request):
+  current_user =request.user
+  if request.method=='POST':
+    form=ProfileForm(request.POST,request.FILES)
+    if form.is_valid():
+      image=form.save(commit=False)
+      image.user=current_user
+      image.save()
+      return redirect('profile')
+    else:
+        form=ProfileForm()
+        return render(request,'profile_edit.html',{"form":form})
+
+
 
