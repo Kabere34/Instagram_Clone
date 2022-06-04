@@ -18,3 +18,18 @@ def upload(request):
   else:
     return render(request,'upload_form.html',{'upload':upload})
 
+def update_post(request,post_id):
+  post_id = int(post_id)
+  try:
+    post_up=Post.objects.get(id=post_id)
+  except Post.DoesNotExist:
+    return redirect('home')
+  post_form=Post(request.POST or None, instance=post_up)
+  if post_form.is_valid():
+    post_form.save()
+    return redirect('home')
+  return render(request,'upload_form.html',{'upload':post_form})
+
+
+
+
