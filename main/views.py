@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import *
 from .forms import *
 from django.contrib.auth import login, authenticate
@@ -65,3 +65,4 @@ def delete_post(request,post_id):
     return redirect('create_post')
   post_up.delete()
   return redirect('create_post')
+
