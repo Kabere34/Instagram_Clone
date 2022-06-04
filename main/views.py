@@ -31,5 +31,12 @@ def update_post(request,post_id):
   return render(request,'upload_form.html',{'upload':post_form})
 
 
-
+def delete_post(request,post_id):
+  post_id = int(post_id)
+  try:
+    post_up=Post.objects.get(id=post_id)
+  except Post.DoesNotExist:
+    return redirect('home')
+  post_up.delete()
+  return redirect('home')
 
