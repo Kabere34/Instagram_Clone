@@ -20,4 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('main.urls')),
     path('accounts/',include('registration.backends.simple.urls'))
-]
+ ]
