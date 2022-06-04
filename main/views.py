@@ -66,3 +66,13 @@ def delete_post(request,post_id):
   post_up.delete()
   return redirect('create_post')
 
+
+def profile(request, username=None):
+  '''
+	Method that fetches a users profile page
+	'''
+  current_user =request.user
+  user_post=Post.objects.filter(user=current_user)
+
+  return render(request,"profile.html",locals(),{"user_post":user_post})
+
