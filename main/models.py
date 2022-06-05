@@ -13,8 +13,8 @@ class Profile(models.Model):
     location = models.CharField(max_length=60, blank=True)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
-
+        return self.name
+      
 class Post(models.Model):
     image = models.ImageField(upload_to='posts/')
     name = models.CharField(max_length=250, blank=True)

@@ -2,6 +2,13 @@
 {%block content %}
 <div class="container">
   <h1>heeey</h1>
+  {%for p in post%}
+
+  <img class="image-responsive" src="{{p.image.url}}" alt="">
+
+  {{p.caption}}
+
+  {%endfor%}
 
 </div>
 {%endblock%}

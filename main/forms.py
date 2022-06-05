@@ -8,6 +8,7 @@ class PostForm(forms.ModelForm):
   class Meta:
     model=Post
     fields=('image','caption')
+    exclude=['user']
 
 # class SignUpForm(UserCreationForm):
 #   email = forms.EmailField(max_length=250, help_text='Required. Inform a valid email address.')
@@ -15,7 +16,7 @@ class PostForm(forms.ModelForm):
 #     model=User
 #     fields=('username', 'email', 'password1', 'password2')
 
-class ProfileForm(forms.modelForm):
+class ProfileForm(forms.ModelForm):
   class Meta:
     model=Profile
     fields=('profile_picture', 'bio')

@@ -2,7 +2,43 @@
 {% load crispy_forms_tags %}
 {%block content %}
 <div class="container">
-  
-<input type="submit" value="Submit" class="btn btn-primary">
-</div>
+  <div class= "jumbotron">
+<div class="row">
+  <div class="col-md-4">
+    <div class="content-section">
+       <div class="media">
+         <img src="{{user.profile.profile_picture.url}}" alt="Profile" class="img_profile" >
+       </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+         <div class="media-body">
+            <div class="mine">
+           <h4 class="account-heading">{{user.username}}</h4>
+           <button class="btn btn-outline-primary" style="margin-left:30px;"><a href="{% url 'profile_edit' %}" >Edit Profile</a></button><i class="fa fa-sun-o" style="font-size: 28px;"></i>
+           <ul>
+                  <li class="dropdown" class='fas fa-cog' style="margin-right:500px; list-style: none;" >
+
+                    <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">&#xf013;
+                              <span class="caret"></span>
+                          </a>
+                    <ul class="dropdown-menu" role="menu" style="list-style: none;">
+
+                      <li>
+                        <a href="{%url 'new_post'%}">Post something</a>
+                      </li>
+                      <li>
+                        <a href="{%url 'profile'%}">Profile</a>
+                      </li>
+                      <li>
+                              <a href="/logout">Logout</a>
+                            </li>
+                      <li>
+                        <a href="/accounts/password/change">Change Password</a>
+                      </li>
+
+                    </ul>
+          </div>
+
+
 {%endblock%}
