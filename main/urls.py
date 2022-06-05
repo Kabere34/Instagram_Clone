@@ -10,13 +10,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(),name='logout'),
     path('profile/',views.profile,name='profile'),
     path('edit/profile',views.profile_edit,name='profile_edit'),
+    path('comment/<int:id>',views.comment,name='comment'),
 
-
-    # path('registration_form/', views.signup, name='signup'),
-    # path('upload/', views.upload, name='upload'),
-    # path('upload/', views.upload, name='upload'),
-    # path('update/<int:post_id>', views.update_post, name='update'),
-    # path('delete/<int:post_id>', views.upload_post, name='delete'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
