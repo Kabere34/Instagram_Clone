@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/clearcache/', include('clearcache.urls')),
     path('admin/', admin.site.urls),
     path('',include('main.urls')),
-    path('accounts/',include('registration.backends.simple.urls'))
+    path('accounts/',include('registration.backends.simple.urls')),
+    
  ]
