@@ -76,5 +76,27 @@ def profile_edit(request):
       form=ProfileForm()
   return render(request,'main/profile_edit.html',{"form":form})
 
+def add_comment(request,image_id):
+  current_user =request.user
+  if request.method=='POST':
+    image_item=Post.objects.filter(id=image_id).first()
+    form=CommentForm(request.POST, request.FILES)
+    if form.is_valid():
+      comment=form.save(commit=False)
+      comment.user=current_user
+      comment.post=image_item
+      comment.save()
+      return redirect('home')
+    else:
+      form=CommentForm()
+    return render(request,'comment.html',{"form":form,"image_id":image_id})
+
+
+
+
+
+
+
+
 
 
