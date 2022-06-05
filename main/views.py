@@ -46,48 +46,33 @@ def new_post(request):
         form = PostForm()
     return render(request, 'main/new_post.html', {"form": form})
 
-# def new_post(request):
-#     current_user = request.user
-#     # post = Post.objects.all()
-#     if request.method == 'POST':
-#         form = PostForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.user = current_user
-#             post.save()
-
-#         return redirect('home')
-#     else:
-#         form = PostForm()
-#     return render(request, 'main/new_post.html', {"form": form})
-
 
 
 # create and edit profile
-# @login_required(login_url='/accounts/login/')
-# def profile(request, username=None):
-#   '''
-# 	Method that fetches a users profile page
-# 	'''
-#   current_user =request.user
-#   us_images=Post.objects.filter(user=current_user)
+@login_required(login_url='/accounts/login/')
+def profile(request, username=None):
+  '''
+	Method that fetches a users profile page
+	'''
+  current_user =request.user
+  us_images=Post.objects.filter(user=current_user.profile)
 
-#   return render(request,"profile.html",locals(),{"us_images":us_images})
+  return render(request,"main/profile.html",{"us_images":us_images})
 
 
-# @login_required(login_url='/accounts/login/')
-# def profile_edit(request):
-#   current_user =request.user
-#   if request.method=='POST':
-#     form=ProfileForm(request.POST,request.FILES)
-#     if form.is_valid():
-#       image=form.save(commit=False)
-#       image.user=current_user
-#       image.save()
-#       return redirect('profile')
-#     else:
-#         form=ProfileForm()
-#         return render(request,'profile_edit.html',{"form":form})
+@login_required(login_url='/accounts/login/')
+def profile_edit(request):
+  current_user =request.user
+  if request.method=='POST':
+    form=ProfileForm(request.POST,request.FILES)
+    if form.is_valid():
+      image=form.save(commit=False)
+      image.user=current_user
+      # image.save()
+      return redirect('profile')
+  else:
+      form=ProfileForm()
+  return render(request,'main/profile_edit.html',{"form":form})
 
 
 

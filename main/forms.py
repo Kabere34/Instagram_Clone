@@ -19,6 +19,6 @@ class PostForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
   class Meta:
     model=Profile
-    fields=('profile_picture', 'bio')
+    fields=('name','location','profile_picture', 'bio')
     exclude=['user']
 

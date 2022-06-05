@@ -3,10 +3,13 @@
 <div class="container">
   <h1>heeey</h1>
   {%for p in post%}
+  <div>{{p.user.user.username}}</div>
+
+
 
   <img class="image-responsive" src="{{p.image.url}}" alt="">
+<div>{{p.caption}}</div>
 
-  {{p.caption}}
 
   {%endfor%}
 

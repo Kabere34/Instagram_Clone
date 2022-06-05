@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{% load bootstrap4 %}
+{%load static%}
+
+ {% block content %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Edit Your Profile Information</title>
+  {{form.media}}
+
+{% block styles %} {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+
+</head>
+
+<body>
+<div class="container" style="background-color:#fff;">
+
+     <div class="row">
+
+
+  <form  action="{%url 'profile_edit'%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    {% bootstrap_form form%}
+    <input id="id_myfield" type="submit" class="btn btn-success btn-lg" value="Post">
+  </form>
+  {% endblock %}
+
