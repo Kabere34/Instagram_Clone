@@ -80,6 +80,7 @@ def add_comment(request,image_id):
   current_user =request.user
   if request.method=='POST':
     image_item=Post.objects.filter(id=image_id).first()
+
     form=CommentForm(request.POST, request.FILES)
     if form.is_valid():
       comment=form.save(commit=False)
@@ -89,7 +90,7 @@ def add_comment(request,image_id):
       return redirect('home')
     else:
       form=CommentForm()
-    return render(request,'comment.html',{"form":form,"image_id":image_id})
+    return render(request,'main/comment.html',{"form":form,"image_id":image_id})
 
 
 

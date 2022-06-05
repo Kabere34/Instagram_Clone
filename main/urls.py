@@ -9,8 +9,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(),name='login'),
     path('logout/', auth_views.LogoutView.as_view(),name='logout'),
     path('profile/',views.profile,name='profile'),
-    path('edit/profile',views.profile_edit,name='profile_edit'),
-    path('comment/<int:id>',views.comment,name='comment'),
+    path('edit_profile',views.profile_edit,name='profile_edit'),
+    path('comment/<int:id>',views.add_comment,name='comment'),
 
 ]
 if settings.DEBUG:
