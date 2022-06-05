@@ -1,3 +1,5 @@
+from dataclasses import fields
+from urllib import request
 from django import forms
 from .models import *
 from django.forms import ModelForm
@@ -10,15 +12,13 @@ class PostForm(forms.ModelForm):
     fields=('image','caption')
     exclude=['user']
 
-# class SignUpForm(UserCreationForm):
-#   email = forms.EmailField(max_length=250, help_text='Required. Inform a valid email address.')
-#   class Meta:
-#     model=User
-#     fields=('username', 'email', 'password1', 'password2')
-
 class ProfileForm(forms.ModelForm):
   class Meta:
     model=Profile
     fields=('name','location','profile_picture', 'bio')
     exclude=['user']
 
+class CommentForm (forms.ModelForm):
+  class Meta:
+    model=Comment
+    fields=('comment','post','user')

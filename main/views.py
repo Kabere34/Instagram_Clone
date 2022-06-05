@@ -60,6 +60,8 @@ def profile(request, username=None):
   return render(request,"main/profile.html",{"us_images":us_images})
 
 
+
+
 @login_required(login_url='/accounts/login/')
 def profile_edit(request):
   current_user =request.user
@@ -68,7 +70,7 @@ def profile_edit(request):
     if form.is_valid():
       image=form.save(commit=False)
       image.user=current_user
-      # image.save()
+      image.save()
       return redirect('profile')
   else:
       form=ProfileForm()
