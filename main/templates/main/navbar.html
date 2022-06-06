@@ -1,29 +1,41 @@
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-      <a class="navbar-brand" href="#">Instagram</a>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li>
-          <a class='btn btn-default' href="/accounts/register/">Register</a>
-        </li>
-        <li>
-          <a class='btn btn-default' href="/accounts/login">Login</a>
-        </li>
-        <li>
-          <a href="{% url 'logout' %}">Logout</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search" action="{% url 'search_results' %}">
-        <input class="form-control me-2" type="search" name="search" placeholder="user" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="row">
+<div class="col-md-3">
+  <a href="{% url 'home' %}"></i><img src="{% static 'images/logo.png' %}" alt="" class="download" style="margin-left:100px;margin-top: 20px;"></a>
+</div>
+<div class='col-md-4'>
+  <form class="col-md-7" role="search" action="{% url 'search_results' %}" style="margin-left:100px;margin-top: 20px;">
+    <input name="user" class="form-control text-center"  placeholder="Search" name="user">
+
+</form>
+
+</div>
+
+
+<div class='col-md-5' style="padding: 2px;">
+  <a href="{%url 'home'%}"><img src="{% static 'images/home2.png' %}" alt="" style="margin-right:3px; margin-left:3px; padding: 0px; background-color: white; display: inline-block;"></a>
+
+  <img src="{% static 'images/love.png' %}" style="margin-right:3px; margin-left:3px;">
+
+    <a href="{%url 'new_post'%}"><img src="{% static 'images/more.png' %}" alt=""style="margin-right:3px; margin-left:3px;"></a>
+
+
+
+</div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+</body>
+</html>
