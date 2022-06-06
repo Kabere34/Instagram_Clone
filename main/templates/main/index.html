@@ -26,7 +26,7 @@
           <div class="iconic ml-2">
             <button class="btn  btn-sm" type="submit"><a href="{% url 'comment' p.id %}"><img src="{% static 'images/bubble-chat.png' %}" alt=""></a></button>
 
-              <button class="btn  btn-sm" type="submit"><a href="#"><img src="{% static 'images/love.png' %}" alt=""></a></button>
+              <button class="btn  btn-sm" type="submit"><a href="{% url 'likePost' p.id %}"><img src="{% static 'images/love.png' %}" alt=""></a></button>
 
         </div>
         <span class="ml-4 mb-1"></span>

@@ -1,0 +1,9 @@
+<form action="{% url 'liked' post.id %}" method="post">
+  {% csrf_token %}
+  {% if is_liked %}
+  <button class="btn  btn-sm" type="submit" id="like" name="post_id" value="{{post.id}}"><a href="#"><img src="{% static 'images/love.png' %}" aria-hidden="true" style="color:red" alt=""></a></button>
+
+
+ 
+</form>
+<span>{{ total_likes }} like{{ total_likes | pluralize}}</span>

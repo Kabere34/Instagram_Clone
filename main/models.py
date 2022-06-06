@@ -19,7 +19,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='posts/')
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
-    likes = models.ManyToManyField(User, related_name='likes', blank=True, )
+    likes = models.IntegerField(default=0)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
     created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -38,7 +38,7 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-    image = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
