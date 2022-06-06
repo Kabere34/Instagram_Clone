@@ -57,18 +57,6 @@ def profile_edit(request):
   return render(request,'main/profile_edit.html',{"form":form})
 
 
-# def add_comment(request,post_id):
-#   post=Post.objects.get(pk=post_id)
-#   comment = request.GET.get('comment')
-#   print(comment)
-#   user = request.user
-#   comment = Comment( post = post, comment = comment, user = user)
-#   comment.save_comment()
-
-#   return redirect('home')
-
-
-
 def add_comment(request,post_id):
   current_user =request.user
   if request.method=='POST':
@@ -94,7 +82,12 @@ def search_results(request):
     return render(request, 'search.html',{"message":message,"searched_user": searched_user})
 
 
-
+def  likepost(request,post_id):
+  likes=1
+  posts=Post.objects.get(id=post_id)
+  posts.likes=posts.likes+1
+  posts.save()
+  return redirect('home')
 
 
 
