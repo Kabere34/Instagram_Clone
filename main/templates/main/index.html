@@ -9,7 +9,7 @@
       <div class="row">
         <button class="btn btn-sm btn-outline-primary ml-4 mb-3"><a href="{%url 'new_post'%}">Upload Image</a></button>
       </div>
-      
+
       {%for p in post%}
       <div class="card mb-4">
 
@@ -20,10 +20,31 @@
         <div class="card-body mb-4">
           <a href="#">
             <img class="image-responsive" src="{{p.image.url}}" alt="" class="card-img" width="100%">
-
           </a>
+        </div>
+        <div class="iconic ml-2">
+          <div class="iconic ml-2">
+            <button class="btn  btn-sm" type="submit"><a href="{% url 'comment' p.id %}"><img src="{% static 'images/bubble-chat.png' %}" alt=""></a></button>
+
+              <button class="btn  btn-sm" type="submit"><a href="#"><img src="{% static 'images/love.png' %}" alt=""></a></button>
 
         </div>
+        <span class="ml-4 mb-1"></span>
+
+        <p>
+          <span> <b>{{p.user.user.username}}</b></span>
+        {{p.caption}}</p>
+
+
+
+
+
+
+
+
+
+
+
 
       </div>
 

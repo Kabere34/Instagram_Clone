@@ -1,5 +1,4 @@
-{%extends 'base.html'%}
-
+{%extends 'main/base.html'%}
 {% load bootstrap4 %}
 {%load static%}
 
@@ -15,13 +14,10 @@
   <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
 
 </head>
-
 <body>
 <div class="container" style="background-color:#fff;">
 
      <div class="row">
-
-
   <form  action="{%url 'profile_edit'%}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 

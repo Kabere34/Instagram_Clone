@@ -1,4 +1,4 @@
-{%extends 'base.html'%}
+{%extends 'main/base.html'%}
 {% load crispy_forms_tags %}
 {%block content %}
 <div class="container">
@@ -15,6 +15,7 @@
          <div class="media-body">
             <div class="mine">
            <h4 class="account-heading">{{user.username}}</h4>
+           <p>{{user.email}}</div>p>
            <p>{{user.profile.bio}}</p>
 
            <button class="btn btn-outline-primary" style="margin-left:30px;">

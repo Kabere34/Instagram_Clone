@@ -10,7 +10,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(),name='logout'),
     path('profile/',views.profile,name='profile'),
     path('edit_profile',views.profile_edit,name='profile_edit'),
-    path('comment/<int:id>',views.add_comment,name='comment'),
+    path('comment/<int:post_id>',views.add_comment,name='comment'),
     path('search/', views.search_results,name='search_results'),
 
 ]
