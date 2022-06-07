@@ -1,5 +1,18 @@
 {% extends 'main/base.html' %}
 {%block content%}
-{{post.title}}
-jj
+<div class="row row-cols-1 row-cols-md-3 g-4"></div>
+<div class="col">
+  <div class="card h-100">
+    <img src="{{post.image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{post.title}}</h5>
+      <p class="card-text">{{post.caption}}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{post.created}}</small>
+    </div>
+  </div>
+</div>
+</div>
+
 {%endblock%}

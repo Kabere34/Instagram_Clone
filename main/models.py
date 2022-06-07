@@ -23,6 +23,11 @@ class Profile(models.Model):
             output_size = (300,300)
             img.thumbnail(output_size)
             img.save(self.profile_picture.path)
+    @classmethod
+    def search_profile(cls,name):
+      names=cls.objects.filter(name__icontains=name)
+      return names
+
 
 class Post(models.Model):
     image = models.ImageField(upload_to='posts/')

@@ -9,7 +9,6 @@
     <div class="content-section">
        <div class="media">
          {%if current_user.profile.profile_picture%}
-
          <img src="{{current_user.profile.profile_picture.url}}" alt="Profile" class="img_profile" style="height: 13rem">
          {%else%}
          <img src="{% static 'images/default.png' %}" alt="Profile" class="img_profile" style="height: 13rem">

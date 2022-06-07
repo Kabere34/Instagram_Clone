@@ -5,7 +5,6 @@ from .import views
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.home, name='home'),
-    # path('sinle_post/', views.single_post,name='single_post'),
     path('new_post/', views.new_post, name='new_post'),
     path('login/', auth_views.LoginView.as_view(),name='login'),
     path('logout/', auth_views.LogoutView.as_view(),name='logout'),
@@ -14,6 +13,8 @@ urlpatterns = [
     path('comment/<int:post_id>',views.add_comment,name='comment'),
     path('search/', views.search_results,name='search_results'),
     path('likes/<int:post_id>', views.likePost,name='likePost'),
+    path('post/<int:post_id>/', views.single_post,name='single_post'),
+    path('profile/<int:user_id>/', views.user_profile,name='user_profile'),
 
 ]
 if settings.DEBUG:

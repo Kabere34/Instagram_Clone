@@ -8,22 +8,18 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import loader
+
 # Create your views here.
-
-
-
 @login_required(login_url='/accounts/login/')
 def home(request):
   post = Post.objects.all()
   all_users=User.objects.all()
   return render(request, 'main/index.html',{'all_users':all_users,'post':post[::-1]})
 
-def single_post(request):
-  # current_user =request.user
-  # if request.method=='POST':
-  #   image_item=Post.objects.filter(id=post_id).first()
-  return render(request, 'main/single_post.html')
 
+def single_post(request,post_id):
+  post=get_object_or_404(Post,id=post_id)
+  return render(request, 'main/single_post.html', {"post":post})
 
 
 @login_required(login_url='/accounts/login/')
@@ -55,6 +51,10 @@ def profile(request):
   print(user,profile_image)
   return render(request,"main/profile.html" ,{"profile":profile, "current_user":current_user})
 
+def user_profile(request,user_id):
+  user=get_object_or_404(User,id=user_id)
+  return render(request,"main/profile.html" ,{"profile":profile, "current_user":user})
+
 
 @login_required(login_url='/accounts/login/')
 def profile_edit(request):
@@ -64,7 +64,6 @@ def profile_edit(request):
     if form.is_valid():
       image=form.save(commit=False)
       image.user=current_user
-      # image.save()
       return redirect('profile')
   else:
       form=ProfileForm()
@@ -98,7 +97,7 @@ def search_results(request):
             'results': results,
             'message': message
         }
-        return render(request, 'instagram/results.html', params)
+        return render(request, 'instagram/search.html', params)
     else:
         message = "You haven't searched for any image category"
     return render(request, 'main/search.html', {'message': message})
@@ -114,12 +113,7 @@ def search_results(request):
 #     return render(request, 'main/search.html',{"message":message})
 
 
-# def likePost(request,post_id):
-#   likes=1
-#   posts=Post.objects.get(id=post_id)
-#   posts.likes=posts.likes+1
-#   posts.save()
-#   return redirect('home')
+
 @login_required(login_url='/accounts/login/')
 def likePost(request,post_id):
   user=request.user
@@ -139,10 +133,9 @@ def likePost(request,post_id):
   print(post)
   return HttpResponseRedirect(reverse('home'))
 
-  # HttpResponseRedirect(url 'home'current_likes)
-  # response=HttpResponse(current_likes)
-  # response['Content-Type']='application/json'
-  # return response
+
+
+
 
 
 

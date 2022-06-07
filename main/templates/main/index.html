@@ -10,24 +10,31 @@
         <button class="btn btn-sm btn-outline-primary ml-4 mb-3"><a href="{%url 'new_post'%}">Upload Image</a></button>
       </div>
 
+      <div class="container">
+      <div class="row">
+
+        <div class="col-md-8">
+
       {%for p in post%}
       <div class="card mb-4">
 
         <div class="card-header bg-white">
           <img src="{{p.user.user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" alt="{{p.user.user.username}}" width="35" height="35">
-          <a href="{%url 'profile'%}" {{p.user.user.username}} class="mt-4 user">{{p.user.user.username}}</a>
+          <a href="{%url 'user_profile' p.user.user.id%}" {{p.user.user.username}} class="mt-4 user">{{p.user.user.username}}</a>
         </div>
 
         <div class="card-body mb-4">
-          <a href="#">
-            <img class="image-responsive" src="{{p.image.url}}" alt="" class="card-img" width="100%">
-          </a>
+
+           <a href="{%url 'single_post' p.id%}"> <img class="image-responsive" src="{{p.image.url}}" alt="" class="card-img" width="100%"></a>
+
         </div>
         <div class="iconic ml-2">
           <div class="iconic ml-2">
             <button class="btn  btn-sm" type="submit"><a href="{% url 'comment' p.id %}"><img src="{% static 'images/bubble-chat.png' %}" alt=""></a></button>
 
-              <button class="btn btn-sm" type="submit"><a href="{% url 'likePost' p.id %}"><img src="{% static 'images/love.png' %}" alt=""></a> {{p.likes}} likes</button>
+              <button class="btn btn-sm" type="submit"><a href="{% url 'likePost' p.id %}">
+                
+                <img src="{% static 'images/love.png' %}" alt=""></a> {{p.likes}} likes</button>
 
         </div>
         <span class="ml-4 mb-1"></span>
@@ -52,8 +59,25 @@
 
           </div>
           {%endfor%}
-          <div class="card">
-          <div class="col md-4">hh</div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+              {% for user in all_users%}
+              <a href="{%url 'user_profile' user.id%}">
+
+              <li class="list-group-item"><img src="{{user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" width="35" height="35" alt="">{{user.username}}</li></a>
+
+              {%endfor%}
+            </ul>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+
+
         </div>
 
   </div>
@@ -63,7 +87,7 @@
 
 
     </md-1>
-  </div>
+
 </div>
 
 
