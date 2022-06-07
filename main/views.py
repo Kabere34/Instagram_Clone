@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.template import loader
 # Create your views here.
 
+
+
 @login_required(login_url='/accounts/login/')
 def home(request):
   post = Post.objects.all()

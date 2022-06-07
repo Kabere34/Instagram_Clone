@@ -1,41 +1,46 @@
 {%load static%}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-<div class="row">
-<div class="col-md-3">
-  <a href="{% url 'home' %}"></i><img src="{% static 'images/logo.png' %}" alt="" class="download" style="margin-left:100px;margin-top: 20px;"></a>
-</div>
-<div class='col-md-4'>
-  <form class="col-md-7" role="search" action="{% url 'search_results' %}" style="margin-left:100px;margin-top: 20px;">
-    <input name="user" class="form-control text-center"  placeholder="Search" name="user">
+  <div class="nv_hd" style=" border-bottom:1px solid rgb(176, 174, 174);height:4rem; ">
+    <div class="row">
+      <div class="col-md-3">
+        <a href="{% url 'home' %}"></i><img src="{% static 'images/logo.png' %}" alt="" class="download"
+            style="margin-left:100px;margin-top: 20px;"></a>
+      </div>
+      <div class='col-md-4'>
+        <form class="col-md-7" role="search" action="{% url 'search_results' %}"
+          style="margin-left:100px;margin-top: 20px;">
+          <input name="user" class="form-control text-center" placeholder="Search" name="user">
+        </form>
 
-</form>
+      </div>
+      <div class='col-md-5' style="padding: 2px;">
+        <a href="{%url 'home'%}"><img src="{% static 'images/home2.png' %}" alt=""
+            style="margin-right:3px; margin-left:3px; padding: 0px; background-color: white; display: inline-block;"></a>
 
-</div>
+        <img src="{% static 'images/love.png' %}" style="margin-right:3px; margin-left:3px;">
 
-
-<div class='col-md-5' style="padding: 2px;">
-  <a href="{%url 'home'%}"><img src="{% static 'images/home2.png' %}" alt="" style="margin-right:3px; margin-left:3px; padding: 0px; background-color: white; display: inline-block;"></a>
-
-  <img src="{% static 'images/love.png' %}" style="margin-right:3px; margin-left:3px;">
-
-    <a href="{%url 'new_post'%}"><img src="{% static 'images/more.png' %}" alt=""style="margin-right:3px; margin-left:3px;"></a>
+        <a href="{%url 'new_post'%}"><img src="{% static 'images/more.png' %}" alt=""
+            style="margin-right:3px; margin-left:3px;"></a>
 
 
 
-</div>
-</div>
+      </div>
+    </div>
 
-<br>
-<br>
-<br>
-<br>
-
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
 </body>
+
 </html>

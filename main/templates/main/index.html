@@ -13,10 +13,11 @@
       {%for p in post%}
       <div class="card mb-4">
 
-        <div class="card-title">
-          <img src="{{p.user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" alt="{{p.user.user.username}}" width="35" height="35">
+        <div class="card-header bg-white">
+          <img src="{{p.user.user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" alt="{{p.user.user.username}}" width="35" height="35">
           <a href="{%url 'profile'%}" {{p.user.user.username}} class="mt-4 user">{{p.user.user.username}}</a>
         </div>
+
         <div class="card-body mb-4">
           <a href="#">
             <img class="image-responsive" src="{{p.image.url}}" alt="" class="card-img" width="100%">
@@ -26,7 +27,7 @@
           <div class="iconic ml-2">
             <button class="btn  btn-sm" type="submit"><a href="{% url 'comment' p.id %}"><img src="{% static 'images/bubble-chat.png' %}" alt=""></a></button>
 
-              <button class="btn  btn-sm" type="submit"><a href="{% url 'likePost' p.id %}"><img src="{% static 'images/love.png' %}" alt=""></a>{{p.likes}} like(s)</button>
+              <button class="btn btn-sm" type="submit"><a href="{% url 'likePost' p.id %}"><img src="{% static 'images/love.png' %}" alt=""></a>{{p.likes}} like(s)</button>
 
         </div>
         <span class="ml-4 mb-1"></span>
@@ -35,8 +36,6 @@
           <span> <b>{{p.user.user.username}}</b></span>
         {{p.caption}}</p>
       </div>
-
-
 
     <div class="card-footer" style="padding: 0">
       <form role="add_comment" enctype="multipart/form-data">
@@ -52,6 +51,22 @@
             </div>
           </div>
 
+  </div>
+
+  <!-- modal -->
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="..." class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
   </div>
 
 
