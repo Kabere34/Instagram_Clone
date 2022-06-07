@@ -35,8 +35,23 @@
           <span> <b>{{p.user.user.username}}</b></span>
         {{p.caption}}</p>
       </div>
-     
-    </div>
+
+
+
+    <div class="card-footer" style="padding: 0">
+      <form role="add_comment" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="input-group">
+              <input id="id_myfield" type="text" action="#" class="form-control" placeholder="Add a comment" name="comment"
+                  style="font-size: 1rem; border: 0;">
+              <div class="input-group-btn">
+                <button class="btn" type="submit" style="font-size: 1rem; opacity: 0.5;"> Post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+          </div>
+
   </div>
 
 

@@ -15,6 +15,15 @@ def home(request):
   post = Post.objects.all()
   return render(request, 'main/index.html',{'post':post})
 
+def single_post(request,post_id):
+  current_user =request.user
+  if request.method=='POST':
+    image_item=Post.objects.filter(id=post_id).first()
+  return render(request, 'main/single_post.html', {"image_item":image_item})
+
+
+
+@login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user = request.user
     # post = Post.objects.all()
@@ -31,16 +40,16 @@ def new_post(request):
     return render(request, 'main/new_post.html', {"form": form})
 
 
-
 # create and edit profile
 @login_required(login_url='/accounts/login/')
-def profile(request, username=None):
+def profile(request):
   '''
 	Method that fetches a users profile page
 	'''
-  current_user =request.user
-  us_images=Post.objects.filter(user=current_user.profile)
-  return render(request,"main/profile.html",{"us_images":us_images})
+  user=User.objects.all()
+  profile_image=Profile.objects.filter(user=request.user.pk)
+  print(user,profile_image)
+  return render(request,"main/profile.html" ,{"profile":profile})
 
 
 @login_required(login_url='/accounts/login/')
@@ -57,7 +66,7 @@ def profile_edit(request):
       form=ProfileForm()
   return render(request,'main/profile_edit.html',{"form":form})
 
-
+@login_required(login_url='/accounts/login/')
 def add_comment(request,post_id):
   current_user =request.user
   if request.method=='POST':
@@ -74,7 +83,7 @@ def add_comment(request,post_id):
       form=CommentForm()
   return render(request,'main/comment.html',{"form":form,"post_id":post_id})
 
-
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'search_user' in request.GET and request.GET['search_user']:
         name = request.GET.get("search_user")
@@ -107,7 +116,7 @@ def search_results(request):
 #   posts.likes=posts.likes+1
 #   posts.save()
 #   return redirect('home')
-
+@login_required(login_url='/accounts/login/')
 def likePost(request,post_id):
   user=request.user
   post=Post.objects.get(id=post_id)
