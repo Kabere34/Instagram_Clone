@@ -1,4 +1,4 @@
-# Insta-Clone
+# Instagram_Clone
 
 >[Kabere34](https://github.com/Kabere34)
 
@@ -33,7 +33,7 @@ To get the project .......
 
 ##### Cloning the repository:
  ```bash
- https://github.com/Kabere34/Insta-Clone.git
+ https://github.com/Kabere34/Instagram_Clone.git
 ```
 ##### Navigate into the folder and install requirements
  ```bash
