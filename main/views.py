@@ -13,13 +13,14 @@ from django.template import loader
 @login_required(login_url='/accounts/login/')
 def home(request):
   post = Post.objects.all()
-  return render(request, 'main/index.html',{'post':post})
+  all_users=User.objects.all()
+  return render(request, 'main/index.html',{'all_users':all_users,'post':post[::-1]})
 
-def single_post(request,post_id):
-  current_user =request.user
-  if request.method=='POST':
-    image_item=Post.objects.filter(id=post_id).first()
-  return render(request, 'main/single_post.html', {"image_item":image_item})
+def single_post(request):
+  # current_user =request.user
+  # if request.method=='POST':
+  #   image_item=Post.objects.filter(id=post_id).first()
+  return render(request, 'main/single_post.html')
 
 
 
@@ -46,10 +47,11 @@ def profile(request):
   '''
 	Method that fetches a users profile page
 	'''
+  current_user =request.user
   user=User.objects.all()
   profile_image=Profile.objects.filter(user=request.user.pk)
   print(user,profile_image)
-  return render(request,"main/profile.html" ,{"profile":profile})
+  return render(request,"main/profile.html" ,{"profile":profile, "current_user":current_user})
 
 
 @login_required(login_url='/accounts/login/')
@@ -60,7 +62,7 @@ def profile_edit(request):
     if form.is_valid():
       image=form.save(commit=False)
       image.user=current_user
-      image.save()
+      # image.save()
       return redirect('profile')
   else:
       form=ProfileForm()
