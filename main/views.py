@@ -48,12 +48,14 @@ def profile(request):
   current_user =request.user
   user=User.objects.all()
   profile_image=Profile.objects.filter(user=request.user.pk)
-  print(profile_image,'yy')
+  print(user,profile_image)
   return render(request,"main/profile.html" ,{"profile":profile, "current_user":current_user})
 
 def user_profile(request,user_id):
   user=get_object_or_404(User,id=user_id)
   return render(request,"main/profile.html" ,{"profile":profile, "current_user":user})
+
+
 
 
 @login_required(login_url='/accounts/login/')
@@ -81,7 +83,7 @@ def add_comment(request,post_id):
       comment.user=current_user.profile
       comment.post=image_item
       comment.save()
-      return redirect('home')
+      return HttpResponseRedirect(request.path_info)
   else:
       form=CommentForm()
   return render(request,'main/comment.html',{"form":form,"post_id":post_id})
@@ -92,7 +94,7 @@ def search_results(request):
         name = request.GET.get("search_user")
         results = Profile.search_profile(name)
         print(results)
-        message = f'name'
+        message = f'{name}'
         params = {
             'results': results,
             'message': message

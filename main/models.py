@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 from PIL import Image
+
 # Create your models here.
 
 
@@ -39,6 +40,9 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.user.name} Post'
+
+# post_save.connect(Comment.user_comment_post, sender=Comment)
+# post_delete.connect(Comment.user_del_comment_post, sender=Comment)
 
 
 class Comment(models.Model):
