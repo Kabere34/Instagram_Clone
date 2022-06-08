@@ -16,7 +16,9 @@ Users can sign up, login, view and post photos, search and follow other users.
  ###### user profile
  <img src="">
 
-
+###### user credentials
+ username- daisymacharia
+ password- Minty@84
 
 ## User Story
 

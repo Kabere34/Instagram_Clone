@@ -48,7 +48,7 @@ def profile(request):
   current_user =request.user
   user=User.objects.all()
   profile_image=Profile.objects.filter(user=request.user.pk)
-  print(user,profile_image)
+  print(profile_image,'yy')
   return render(request,"main/profile.html" ,{"profile":profile, "current_user":current_user})
 
 def user_profile(request,user_id):
