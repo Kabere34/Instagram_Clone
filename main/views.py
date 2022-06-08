@@ -19,6 +19,7 @@ def home(request):
 
 def single_post(request,post_id):
   post=get_object_or_404(Post,id=post_id)
+  
   return render(request, 'main/single_post.html', {"post":post})
 
 
@@ -83,7 +84,7 @@ def add_comment(request,post_id):
       comment.user=current_user.profile
       comment.post=image_item
       comment.save()
-      return HttpResponseRedirect(request.path_info)
+      return redirect('home')
   else:
       form=CommentForm()
   return render(request,'main/comment.html',{"form":form,"post_id":post_id})
