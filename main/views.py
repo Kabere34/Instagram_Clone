@@ -8,8 +8,48 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import loader
+from .email import send_welcome_email
+from django.contrib import messages
+from django.db.models import Q
 
 # Create your views here.
+
+def registration(request):
+  if request.method == 'POST':
+    form = RegistrationForm(request.POST)
+    if form.is_valid():
+      name=form.cleaned_data['username']
+      email=form.cleaned_data['email']
+
+      recipient=NewsLetterRecipients(name=name,email=email)
+      recipient.save()
+      send_welcome_email(name,email)
+      form.save()
+      return HttpResponseRedirect(reverse('home'))
+    else:
+      form=RegistrationForm()
+    return render(request, 'registration/registration_form.html',{'form':form})
+
+# def login(request):
+#   if request.method == 'POST':
+#     username=request.POST.get('username')
+#     password=request.POST.get('password')
+
+#     try:
+#       user=User.objects.get(username=username,password=password)
+#     except:
+#       messages.error('user does not exist')
+#     user=authenticate(request,username=username,password=password)
+#     if user is not None:
+#       login(request,user)
+#       return HttpResponse('logged in')
+#     else:
+#       messages.error('Username or password is incorrect')
+#   return render(request, username=username,password=password)
+
+
+
+
 @login_required(login_url='/accounts/login/')
 def home(request):
   post = Post.objects.all()
@@ -19,7 +59,7 @@ def home(request):
 
 def single_post(request,post_id):
   post=get_object_or_404(Post,id=post_id)
-  
+
   return render(request, 'main/single_post.html', {"post":post})
 
 
@@ -57,8 +97,6 @@ def user_profile(request,user_id):
   return render(request,"main/profile.html" ,{"profile":profile, "current_user":user})
 
 
-
-
 @login_required(login_url='/accounts/login/')
 def profile_edit(request):
   current_user =request.user
@@ -89,21 +127,26 @@ def add_comment(request,post_id):
       form=CommentForm()
   return render(request,'main/comment.html',{"form":form,"post_id":post_id})
 
+
+
 @login_required(login_url='/accounts/login/')
 def search_results(request):
-    if 'search_user' in request.GET and request.GET['search_user']:
-        name = request.GET.get("search_user")
-        results = Profile.search_profile(name)
-        print(results)
-        message = f'{name}'
-        params = {
-            'results': results,
-            'message': message
-        }
-        return render(request, 'instagram/search.html', params)
-    else:
-        message = "You haven't searched for any image category"
-    return render(request, 'main/search.html', {'message': message})
+    post = Post.objects.all()
+    query=request.GET.get('query')
+    if query:
+      image=Post.objects.filter( Q(name__icontains=query) )
+      profile=Profile.objects.filter( Q(user__username__icontains=query) )
+
+      params = {
+          'image': image,
+          'profile': profile,
+          'post':post
+
+
+      }
+      return render(request, 'main/search.html', params)
+
+
 
 # def search_results(request):
 #   if 'user' in request.GET and request.GET["user"]:

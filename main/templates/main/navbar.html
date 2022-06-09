@@ -16,9 +16,9 @@
             style="margin-left:100px;margin-top: 20px;"></a>
       </div>
       <div class='col-md-4'>
-        <form class="col-md-7" role="search" action="{% url 'search_results' %}"
+        <form class="col-md-7" method="GET" action="{% url 'search_results' %}"
           style="margin-left:100px;margin-top: 20px;">
-          <input name="user" class="form-control text-center" placeholder="Search" name="user">
+          <input name="query" type="text" class="form-control text-center" placeholder="Search">
         </form>
 
       </div>
