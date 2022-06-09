@@ -30,25 +30,6 @@ def registration(request):
       form=RegistrationForm()
     return render(request, 'registration/registration_form.html',{'form':form})
 
-# def login(request):
-#   if request.method == 'POST':
-#     username=request.POST.get('username')
-#     password=request.POST.get('password')
-
-#     try:
-#       user=User.objects.get(username=username,password=password)
-#     except:
-#       messages.error('user does not exist')
-#     user=authenticate(request,username=username,password=password)
-#     if user is not None:
-#       login(request,user)
-#       return HttpResponse('logged in')
-#     else:
-#       messages.error('Username or password is incorrect')
-#   return render(request, username=username,password=password)
-
-
-
 
 @login_required(login_url='/accounts/login/')
 def home(request):

@@ -71,9 +71,15 @@
           <div class="card" style="width: 18rem;">
             <ul class="list-group list-group-flush">
               {% for user in all_users%}
-              <a href="{%url 'user_profile' user.id%}">
 
-              <li class="list-group-item"><img src="{{user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" width="35" height="35" alt="">{{user.username}}</li></a>
+              <a href="{%url 'user_profile' user.id%}">
+                {%if user.profile.profile_picture.url%}
+              <li class="list-group-item"><img src="{{user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" width="35" height="35" alt="">
+                {{user.username}}</li></a>
+                {%else%}
+                <li class="list-group-item"><img src="{% static 'images/default.png' %}" class="rounded-circle border-ml-3 mt-2 mr-3" width="35" height="35" alt="">
+                {{user.username}}</li></a>
+                {%endif%}
 
               {%endfor%}
             </ul>
