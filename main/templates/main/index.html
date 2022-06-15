@@ -10,8 +10,6 @@
         <button class="btn btn-sm btn-outline-primary ml-4 mb-3"><a href="{%url 'new_post'%}">Upload Image</a></button>
       </div>
 
-      
-
       <div class="container">
       <div class="row">
 
@@ -21,12 +19,14 @@
       <div class="card mb-4">
 
         <div class="card-header bg-white">
-          {%if{{p.user.user.profile.profile_picture.url}} %}
-          <img src="{{p.user.user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" alt="{{p.user.user.username}}" width="35" height="35">
-          <a href="{%url 'user_profile' p.user.user.id%}" {{p.user.user.username}} class="mt-4 user">{{p.user.user.username}}</a>
-          {%else%}
-          <img src="{% static 'images/default.png' %}" class="rounded-circle border-ml-3 mt-2 mr-3" alt="{{p.user.user.username}}" width="35" height="35">
-          <a href="{%url 'user_profile' p.user.user.id%}" {{p.user.user.username}} class="mt-4 user">{{p.user.user.username}}</a>
+          {% if p.user.user.profile.profile_picture.url %}
+              <img src="{{p.user.user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" alt="{{p.user.user.username}}" width="35" height="35">
+              <a href="{%url 'user_profile' p.user.user.id%}" {{p.user.user.username}} class="mt-4 user">{{p.user.user.username}}</a>
+            {%else%}
+              <img src="{% static 'images/default.png' %}" class="rounded-circle border-ml-3 mt-2 mr-3" alt="{{p.user.user.username}}" width="35" height="35">
+              <a href="{%url 'user_profile' p.user.user.id%}" {{p.user.user.username}} class="mt-4 user">{{p.user.user.username}}</a>
+
+            {%endif%}
         </div>
 
         <div class="card-body mb-4">
@@ -38,12 +38,13 @@
           <div class="iconic ml-2">
             <button class="btn  btn-sm" type="submit"><a href="{% url 'comment' p.id %}"><img src="{% static 'images/bubble-chat.png' %}" alt=""></a></button>
 
-              <button class="btn btn-sm" type="submit"><a href="{% url 'likePost' p.id %}">
+            <button class="btn btn-sm" type="submit"><a href="{% url 'likePost' p.id %}">
 
-                <img src="{% static 'images/love.png' %}" alt=""></a> {{p.likes}} likes</button>
+              <img src="{% static 'images/love.png' %}" alt=""></a> {{p.likes}} likes
+            </button>
 
         </div>
-        <span class="ml-4 mb-1"></span>
+
 
         <p>
           <span> <b>{{p.user.user.username}}</b></span>
@@ -70,8 +71,8 @@
                 </form>
             </div>
 
-          </div>
-          {%endfor%}
+      </div>
+      {%endfor%}
         </div>
         <div class="col-md-4">
           <div class="card" style="width: 18rem;">
@@ -79,13 +80,17 @@
               {% for user in all_users%}
 
               <a href="{%url 'user_profile' user.id%}">
+
                 {%if user.profile.profile_picture.url%}
+
               <li class="list-group-item"><img src="{{user.profile.profile_picture.url}}" class="rounded-circle border-ml-3 mt-2 mr-3" width="35" height="35" alt="">
                 {{user.username}}</li></a>
                 {%else%}
                 <li class="list-group-item"><img src="{% static 'images/default.png' %}" class="rounded-circle border-ml-3 mt-2 mr-3" width="35" height="35" alt="">
                 {{user.username}}</li></a>
+
                 {%endif%}
+
 
               {%endfor%}
             </ul>
@@ -95,20 +100,11 @@
         </div>
       </div>
 
-
-
         </div>
 
   </div>
 
-  <!-- modal -->
-
-
-
-    </md-1>
-
 </div>
-
-
+</div>
 
 {%endblock%}

@@ -19,8 +19,6 @@ def registration(request):
     form = RegistrationForm(request.POST)
     if form.is_valid():
       name=form.cleaned_data['username']
-
-
       form.save()
       return HttpResponseRedirect(reverse('home'))
     else:
