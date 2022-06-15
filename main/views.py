@@ -8,7 +8,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import loader
-from .email import send_welcome_email
+
 from django.contrib import messages
 from django.db.models import Q
 
@@ -19,11 +19,8 @@ def registration(request):
     form = RegistrationForm(request.POST)
     if form.is_valid():
       name=form.cleaned_data['username']
-      email=form.cleaned_data['email']
 
-      recipient=NewsLetterRecipients(name=name,email=email)
-      recipient.save()
-      send_welcome_email(name,email)
+
       form.save()
       return HttpResponseRedirect(reverse('home'))
     else:
