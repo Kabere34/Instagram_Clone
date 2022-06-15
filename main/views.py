@@ -127,8 +127,6 @@ def search_results(request):
       }
       return render(request, 'main/search.html', params)
 
-
-
 @login_required(login_url='/accounts/login/')
 def likePost(request,post_id):
   user=request.user
